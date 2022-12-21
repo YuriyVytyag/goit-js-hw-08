@@ -1,6 +1,7 @@
 import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'fb-message';
+const formData = {};
 
 const refs = {
   form: document.querySelector('.feedback-form'),
@@ -9,11 +10,13 @@ const refs = {
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+refs.form.addEventListener('input', evt => {
+  formData[evt.target.name] = evt.target.value;
+});
 
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  console.log('Send form');
   evt.target.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
@@ -27,7 +30,6 @@ function onTextareaInput(evt) {
 function outputTextarea() {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
   if (savedMessage) {
-    console.log('savedMessage', savedMessage);
     refs.textarea.value = savedMessage;
   }
 }
