@@ -5,9 +5,11 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 
 const galleryEl = document.querySelector('.gallery');
-const imgItemEl = galleryItemsEl(galleryItems);
+const imgItemEl = openGalleryEL();
+console.log('🚀 ~ imgItemEl', imgItemEl);
+
 galleryEl.insertAdjacentHTML('afterbegin', imgItemEl);
-function galleryItemsEl() {
+function openGalleryEL() {
   return galleryItems
     .map(({ preview, original, description }) => {
       return `<a class="gallery__item" href="${original}">
