@@ -26,11 +26,11 @@ function onFormDataInput(evt) {
 
 function outputTextarea() {
   const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  console.log(formData);
   const currentEmail = refs.input;
   const currentMessage = refs.textarea;
+  console.log(savedMessage);
   if (savedMessage) {
-    currentEmail.value = savedMessage.email;
-    currentMessage.value = savedMessage.message;
+    currentEmail.value = savedMessage.email || '';
+    currentMessage.value = savedMessage.message || '';
   }
 }
